@@ -1,0 +1,105 @@
+internal class Program
+{
+    private static void Main(string[] args)
+    {
+    cliente cliente1= new cliente ("Claudio", "Altigieri", 01, true);
+    cliente cliente2= new cliente ("Cristiano", "Ronaldo", 7, false);
+    cliente cliente3= new cliente ("Lionel", "Messi", 10, false);
+    portata portata1= new portata ("Insalata di mare", "Antipasto", 15);
+    portata portata2= new portata ("Ravioli ai gamberi tartufo", "Primo", 18);
+    portata portata3= new portata ("Orata ai ferri", "Secondo", 22);
+    Console.WriteLine (portata1.Descrizione());
+    Console.WriteLine (portata2.Descrizione());
+    Console.WriteLine (portata3.Descrizione());
+    portata1.Ordine(cliente2);
+    portata3.Ordine(cliente3);
+    Console.WriteLine ("Che cosa ordini? 1-Insalata di mare, 2-Ravioli ai gamberi e tartufo, 3-Orata ai ferri");
+    int imput=Convert.ToInt32(Console.ReadLine());
+    if (imput==1)
+     {
+      portata1.Ordine(cliente1);
+      Console.WriteLine("Grazie per aver ordinato l'insalata di mare");
+     }
+
+    else if (imput==2)
+     {
+      portata2.Ordine(cliente1);
+      Console.WriteLine("Grazie per aver ordinato i ravioli con gamberi e tartufo");
+     }
+
+    else if (imput==3)
+     {
+      portata3.Ordine(cliente1);
+      Console.WriteLine("Grazie per aver ordinato l'orata ai ferri");
+     }
+
+     else {Console.WriteLine("Non è possibile ordinare il piatto selezionato");}
+
+
+
+    }
+}
+
+
+
+
+
+
+public class cliente 
+{
+private string nome, cognome;
+private int numerocliente;
+private bool giapagato;
+
+public cliente (string nome, string cognome, int numerocliente, bool giapagato)
+      {
+this.nome=nome;
+this.cognome=cognome;
+this.numerocliente=numerocliente;
+this.giapagato=giapagato;
+      }
+
+ public string Denominazione()
+   {
+   string pagamento;
+   if (this.giapagato==true) {
+   pagamento= "Ha già pagato";
+                             }
+   else {pagamento="Non ha pagato";                          
+   } 
+
+   return this.nome + "" + this.cognome + "" + this.numerocliente + pagamento;
+   }   
+
+}
+
+
+public class portata 
+{
+    private string nome, tipologiapiatto;
+    private double prezzo;
+    cliente Cliente;
+
+    public portata (string nome, string tipologiapiatto, double prezzo)
+       {
+this.nome=nome;
+this.tipologiapiatto=tipologiapiatto;
+this.prezzo=prezzo;
+this.Cliente=null;
+
+        }
+
+ public string Descrizione()
+   {
+ return this.nome + " " + this.tipologiapiatto + " " + prezzo;
+
+   }
+
+   public void Ordine (cliente Cliente)
+
+   {
+     this.Cliente=Cliente;
+   }
+
+
+}
